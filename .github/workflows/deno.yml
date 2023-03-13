@@ -1,5 +1,9 @@
 name: Deploy
 
+env:
+  VITE_API_URL: "https://5jme3upfoa.execute-api.us-east-1.amazonaws.com/Prod"
+  VITE_CONTRACT_ADDRESS: "0x9822e73c92cE61efC89A0dBC70746bDCfd4Fb9C4"
+
 on:
   push:
     branches: [main]
