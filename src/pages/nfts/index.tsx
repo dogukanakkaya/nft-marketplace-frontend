@@ -4,7 +4,7 @@ import { useMetamask } from '@/context/metamask';
 import { request } from '@/helpers';
 import { Card } from '@/components/nfts/card';
 import { alchemy } from '@/services/nfts-service';
-import { CONTRACT_ADDRESS } from '@/config';
+import { CONTRACT_ADDRESS, NULL_ADDRESS, SOMEONE_ELSE } from '@/config';
 import { ethers } from 'ethers';
 
 export function NFTs() {
@@ -31,7 +31,8 @@ export function NFTs() {
             const nfts = contractNfts.nfts.map(nft => ({
                 ...nft.rawMetadata,
                 id: nft.tokenId,
-                tokenURI: nft.tokenUri?.raw
+                tokenURI: nft.tokenUri?.raw,
+                ownedBy: SOMEONE_ELSE
             })) as NFT[];
 
             if (accounts[0]?.address) {
@@ -83,6 +84,18 @@ export function NFTs() {
         }
     };
 
+    const getStatus = (item: NFT) => {
+        if (item.ownedBy === NULL_ADDRESS) {
+            return TxStatus.None;
+        } else if (item.ownedBy === accounts[0]?.address) {
+            return TxStatus.Success;
+        } else if (item.ownedBy === SOMEONE_ELSE) {
+            return TxStatus.Owned;
+        }
+
+        return txStatus[item.id];
+    };
+
     const data = [...lazyNFTs, ...NFTs];
 
     return (
@@ -93,12 +106,12 @@ export function NFTs() {
                         {
                             data.map(item => <Card
                                 item={item}
-                                status={item.ownedBy === accounts[0]?.address ? TxStatus.Success : (txStatus[item.id] || TxStatus.None)}
+                                status={getStatus(item)}
                                 handleMint={() => handleMint(item.id)}
                             />)
                         }
                     </div>
-                ) : <>Loading todo...</>
+                ) : <>Loading...</>
             }
         </div>
     );

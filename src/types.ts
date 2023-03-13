@@ -21,5 +21,6 @@ export enum TxStatus {
     None,
     Pending,
     Success,
-    Fail
+    Fail,
+    Owned
 }

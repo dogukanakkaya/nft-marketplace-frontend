@@ -30,6 +30,11 @@ export function MintButton({ status, handleMint }: { status: TxStatus, handleMin
             <button onClick={handleMint} className="absolute w-30 right-2 top-2 text-white px-4 py-1 rounded bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 transition">
                 Failed to Mint
             </button>
+        ),
+        [TxStatus.Owned]: (
+            <button disabled className="absolute w-30 right-2 top-2 text-white px-4 py-1 rounded bg-gradient-to-r from-cyan-500 to-green-500 hover:from-cyan-400 hover:to-green-400 transition">
+                Owned
+            </button>
         )
     }
     return (
