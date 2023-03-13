@@ -25,8 +25,6 @@ export function NFTs() {
     }, []);
 
     useEffect(() => {
-        if (!accounts[0]) return;
-
         !async function () {
             const contractNfts = await alchemy.nft.getNftsForContract(CONTRACT_ADDRESS);
 
