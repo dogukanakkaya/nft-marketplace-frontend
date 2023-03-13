@@ -1,1 +1,5 @@
-# nft-marketplace-frontend
+# Frontend
+
+```shell
+npm run dev
+```
