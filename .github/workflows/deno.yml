@@ -27,8 +27,6 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          # Warning: Unexpected input(s) 'include', valid inputs are ['project', 'entrypoint', 'import-map', 'root']
-          # Even though GitHub actions shows this warning, `include` or `exclude` args exists in denoland/deployctl 's source code and working.
-          include: dist main.ts
           project: nft-marketplace-frontend
-          entrypoint: main.ts
+          root: dist
+          entrypoint: https://deno.land/std/http/file_server.ts
