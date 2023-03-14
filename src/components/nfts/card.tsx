@@ -5,7 +5,7 @@ import { CONTRACT_ADDRESS, NULL_ADDRESS } from '@/config';
 export function Card({ item, status, handleMint }: { status: TxStatus, item: NFT, handleMint: any }) {
     return (
         <div className="mx-4 sm:mx-0">
-            <div className="sm:nft-image group">
+            <div className="relative group sm:nft-image">
                 {
                     item.ownedBy !== NULL_ADDRESS ? (
                         <a href={`https://testnets.opensea.io/assets/mumbai/${CONTRACT_ADDRESS}/${item.id}`} target="_blank">

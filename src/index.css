@@ -4,7 +4,7 @@
 
 @layer components {
     .nft-image {
-        @apply relative mx-6;
+        @apply mx-6;
         transform: rotateX(45deg) rotateZ(-25deg);
         transform-style: preserve-3d;
         transition: .3s;

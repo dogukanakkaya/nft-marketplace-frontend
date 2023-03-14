@@ -6,7 +6,7 @@ export function Header() {
     return (
         <div className="bg-gray-200">
             <div className="container mx-auto">
-                <div className="h-20 flex items-center justify-between">
+                <div className="h-20 flex items-center justify-between mx-8 sm:mx-0">
                     <h1 className="font-semibold text-3xl">Spacer</h1>
                     {
                         isMetamaskLoading ? (
